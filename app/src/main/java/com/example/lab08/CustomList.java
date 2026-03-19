@@ -19,4 +19,11 @@ public class CustomList {
     public boolean hasCity(City city) {
         return cities.contains(city);
     }
+
+    public void delete(City city) {
+        if (!cities.contains(city)) {
+            throw new IllegalArgumentException("City not found in the list");
+        }
+        cities.remove(city);
+    }
 }
