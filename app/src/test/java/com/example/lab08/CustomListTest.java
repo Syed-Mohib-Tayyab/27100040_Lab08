@@ -11,4 +11,29 @@ public class CustomListTest {
         // This will fail initially because hasCity() doesn' exist
         assertTrue(list.hasCity(calgary));
     }
+
+    @Test
+    public void testDelete() {
+        CustomList list = new CustomList();
+        City calgary = new City("Calgary", "AB");
+
+        // Add the city and verify it's there
+        list.addCity(calgary);
+        assertTrue(list.hasCity(calgary));
+
+        // Delete the city and verify it's gone
+        list.delete(calgary);
+        assertFalse(list.hasCity(calgary));
+    }
+
+    @Test
+    public void testDeleteException() {
+        CustomList list = new CustomList();
+        City calgary = new City("Calgary", "AB");
+
+        // Attempt to delete a city that wasn't added, expecting an exception
+        assertThrows(IllegalArgumentException.class, () -> {
+            list.delete(calgary);
+        });
+    }
 }
